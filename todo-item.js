@@ -43,7 +43,9 @@ class TodoItem extends LitElement {
     const firstTextNode = getFirstTextNodeChild(this);
     firstTextNode.nodeValue = newValue;
 
-    this.dispatchEvent(new CustomEvent('textchange', {detail: {oldValue: oldValue, newValue: newValue}}));
+    this.dispatchEvent(new CustomEvent('textchange', {
+      detail: {oldValue: oldValue, newValue: newValue}
+    }));
   }
 
   _onTextBlur(evt) {
@@ -75,11 +77,9 @@ class TodoItem extends LitElement {
           display: block;
           --todo-item-completed-text-decoration: line-through;
         }
+        :host([hidden]) {display: none;}
         :host([completed]) slot {
           text-decoration: var(--todo-item-completed-text-decoration);
-        }
-        :host([hidden]) {
-          display: none;
         }
       </style>
       <input type=checkbox .checked=${this.completed} @change=${this._onCheckboxChange}>
