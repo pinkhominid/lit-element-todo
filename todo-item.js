@@ -15,6 +15,11 @@ class TodoItem extends LitElement {
     this.editing = false;
   }
 
+  remove() {
+    super.remove();
+    this.dispatchEvent(new Event('remove'));
+  }
+
   _onCheckboxChange(evt) {
     this.completed = evt.target.checked;
     // bubble evt so todo-list can recompute stats
@@ -54,11 +59,6 @@ class TodoItem extends LitElement {
     this._updateItemText(evt.target.value);
   }
 
-  _onRemoveBtnClick() {
-    this.remove();
-    this.dispatchEvent(new Event('remove'));
-  }
-
   async _onSlotDblClick(evt) {
     if (this.editing) return;
     this.editing = true;
@@ -90,7 +90,7 @@ class TodoItem extends LitElement {
         .value=${this.innerText}
       >
       <slot ?hidden=${this.editing} @dblclick=${this._onSlotDblClick}></slot>
-      <button @click=${this._onRemoveBtnClick}>&times;</button>
+      <button @click=${this.remove}>&times;</button>
     `;
   }
 }

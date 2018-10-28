@@ -38,6 +38,10 @@ class TodoList extends LitElement {
     this.requestUpdate();
   }
 
+  _onClearCompletedClick() {
+    this.items.forEach(item => {if (item.completed) item.remove();});
+  }
+
   _onFilterChange(evt) {
     this.filter = evt.target.value;
   }
@@ -45,6 +49,7 @@ class TodoList extends LitElement {
   render() {
     const activeItemsLength = this.items.filter(item => this._filterFns.active(item)).length;
     const shouldPluralize = activeItemsLength !== 1;
+    const completedItemsLength = this.items.length - activeItemsLength;
 
     // show/hide items based on filter
     this._applyFilterFn();
@@ -61,9 +66,10 @@ class TodoList extends LitElement {
         .checked=${!activeItemsLength}
       >
       <slot @slotchange=${this._onItemChange} @completedchange=${this._onItemChange}></slot>
+      <button ?hidden=${!completedItemsLength} @click=${this._onClearCompletedClick}>Clear completed</button>
       <div ?hidden=${!this.items.length}>
         <p>${activeItemsLength} item${shouldPluralize ? 's' : ''} left</p>
-        <fieldset @change=${this._onFilterChange}>
+        <div @change=${this._onFilterChange}>
           ${repeat(Object.keys(this._filterFns), undefined, filterType => html`
             <label><input
               type=radio
@@ -72,7 +78,7 @@ class TodoList extends LitElement {
               .checked=${this.filter === filterType}
             >${filterType}</label>
           `)}
-        </fieldset>
+        </div>
       </div>
     `;
   }
