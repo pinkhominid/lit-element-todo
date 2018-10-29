@@ -1,41 +1,50 @@
 import {LitElement, html} from 'https://unpkg.com/@polymer/lit-element/lit-element.js?module';
 import {repeat} from 'https://unpkg.com/lit-html/directives/repeat?module';
+
+import store from './todo-store.js';
 import './todo-form.js';
 import './todo-list.js';
 import './todo-item.js';
 
 class TodoManager extends LitElement {
-  static get properties() {
-    return {_todos: {type: Array}};
-  }
-
   constructor() {
     super();
-    this._todos = [];
+    this.state = store.load();
+  }
+
+  get todoData() {
+    return this.state.todos;
+  }
+
+  set todoData(data) {
+    const oldValue = this.state.todos;
+    this.state.todos = data;
+    store.save(this.state);
+    this.requestUpdate('todoData', oldValue);
   }
 
   _onSubmit(evt) {
-    const newTodos = [...this._todos];
-    newTodos.push({id: this._todos.length, text: evt.detail.text});
-    this._todos = newTodos;
+    const newTodos = [...this.todoData];
+    newTodos.push({id: this.todoData.length, text: evt.detail.text});
+    this.todoData = newTodos;
   }
 
   _onItemCompleteChange(evt) {
-    const newTodos = [...this._todos];
-    evt.target._data.completed = evt.target.completed;
-    this._todos = newTodos;
+    const newTodos = [...this.todoData];
+    evt.target._data.completed = evt.detail.newValue;
+    this.todoData = newTodos;
   }
 
   _onItemTextChange(evt) {
-    const newTodos = [...this._todos];
+    const newTodos = [...this.todoData];
     evt.target._data.text = evt.detail.newValue;
-    this._todos = newTodos;
+    this.todoData = newTodos;
   }
 
   _onItemRemove(evt) {
-    const newTodos = [...this._todos];
+    const newTodos = [...this.todoData];
     arrayRemove(newTodos, evt.target._data);
-    this._todos = newTodos;
+    this.todoData = newTodos;
   }
 
   render() {
@@ -43,8 +52,8 @@ class TodoManager extends LitElement {
       <style>:host {display: block;}</style>
       <h1>todos</h1>
       <todo-form @submit=${this._onSubmit}></todo-form>
-      <todo-list ?hidden=${!this._todos.length}>
-        ${repeat(this._todos, todo => todo.id, todo => html`
+      <todo-list ?hidden=${!this.todoData.length}>
+        ${repeat(this.todoData, todo => todo.id, todo => html`
           <todo-item
             ._data=${todo}
             ?completed=${todo.completed}
@@ -59,7 +68,9 @@ class TodoManager extends LitElement {
 }
 
 function arrayRemove(arry, item) {
-  arry.splice(arry.indexOf(item), 1);
+  const idx = arry.indexOf(item);
+  if (idx < 0) return;
+  arry.splice(idx, 1);
 }
 
 customElements.define('todo-manager', TodoManager);

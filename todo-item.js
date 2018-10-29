@@ -15,6 +15,21 @@ class TodoItem extends LitElement {
     this.editing = false;
   }
 
+  get completed() {
+    return this._completed;
+  }
+
+  set completed(newValue) {
+    const oldValue = this._completed;
+    this._completed = newValue;
+    this.requestUpdate('completed', oldValue);
+    this.dispatchEvent(new CustomEvent('completedchange', {
+      detail: {oldValue: oldValue, newValue: newValue},
+      // bubble evt so todo-list can recompute stats
+      bubbles: true
+    }));
+  }
+
   remove() {
     super.remove();
     this.dispatchEvent(new Event('remove'));
@@ -22,8 +37,6 @@ class TodoItem extends LitElement {
 
   _onCheckboxChange(evt) {
     this.completed = evt.target.checked;
-    // bubble evt so todo-list can recompute stats
-    this.dispatchEvent(new CustomEvent('completedchange', { bubbles: true }));
   }
 
   _onTextKeydown(evt) {
