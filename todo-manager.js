@@ -1,5 +1,5 @@
-import {LitElement, html} from 'https://unpkg.com/@polymer/lit-element/lit-element.js?module';
-import {repeat} from 'https://unpkg.com/lit-html/directives/repeat?module';
+import {LitElement, html} from '@polymer/lit-element';
+import {repeat} from 'lit-html/directives/repeat';
 
 import store from './todo-store.js';
 import './todo-form.js';

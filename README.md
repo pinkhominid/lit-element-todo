@@ -4,6 +4,12 @@ Implements all features of [TodoMVC](http://todomvc.com/) using [@polymer/lit-el
 
 ![Screenshot of unstyled TodoManager component](https://user-images.githubusercontent.com/206228/47622211-c6ecd100-dad8-11e8-8e02-88c58c623741.png)
 
+## Run
+
+```sh
+npm i && npm start
+```
+
 ## Learnings
 
 * Mimic built-in html elements

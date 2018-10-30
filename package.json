@@ -1,0 +1,36 @@
+{
+  "name": "lit-element-todo",
+  "version": "1.0.0",
+  "description": "Implements all features of [TodoMVC](http://todomvc.com/) using [@polymer/lit-element](https://www.npmjs.com/package/@polymer/lit-element) (0.6.2).",
+  "browser": "todo-manager.js",
+  "scripts": {
+    "start": "polymer serve -o",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pinkhominid/lit-element-todo.git"
+  },
+  "keywords": [
+    "lit-element",
+    "todomvc",
+    "lit-html",
+    "lit",
+    "todo",
+    "example",
+    "webcomponents",
+    "customelements"
+  ],
+  "author": "pinkhominid <pinkhominid@birdbomb.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pinkhominid/lit-element-todo/issues"
+  },
+  "homepage": "https://github.com/pinkhominid/lit-element-todo#readme",
+  "dependencies": {
+    "@polymer/lit-element": "^0.6.2"
+  },
+  "devDependencies": {
+    "polymer-cli": "^1.8.1"
+  }
+}

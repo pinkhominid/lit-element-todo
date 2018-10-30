@@ -1,4 +1,4 @@
-import {LitElement, html} from 'https://unpkg.com/@polymer/lit-element/lit-element.js?module';
+import {LitElement, html} from '@polymer/lit-element';
 
 class TodoForm extends LitElement {
   _submit(evt) {
