@@ -2,7 +2,7 @@
 
 Implements all features of [TodoMVC](http://todomvc.com/) using [@polymer/lit-element](https://www.npmjs.com/package/@polymer/lit-element) (0.6.2).
 
-![Screenshot of unstyled TodoManager component](https://user-images.githubusercontent.com/206228/47622211-c6ecd100-dad8-11e8-8e02-88c58c623741.png)
+![Screenshot of unstyled TodoManager component](https://user-images.githubusercontent.com/206228/48041680-44a18400-e14c-11e8-91b8-bd1190addcc0.png)
 
 ## Run
 
