@@ -1,25 +1,20 @@
 // NOTE: increment key suffix if data shape changes
-const key = '@pinkhominid/lit-element-todo/state/1';
-const defaultState = {todos: []};
+const key = '@pinkhominid/lit-element-todo/state/2';
+const defaultState = {lastId: 0, todos: []};
 
-export default {
-  load: () => {
+export function store(state) {
     try {
-      const stateStr = localStorage.getItem(key);
-      if (stateStr) {
-        return JSON.parse(stateStr);
+      if (state !== undefined) { // set
+        localStorage.setItem(key, JSON.stringify(state));
+      } else { // get
+        state = defaultState;
+        const stateStr = localStorage.getItem(key);
+        if (stateStr) {
+          state = JSON.parse(stateStr);
+        }
       }
     } catch(e) {
-      console.error('Error loading state.', e);
+      console.error(`Error accessing store (${key})`, e);
     }
-    return defaultState;
-  },
-  save: (state) => {
-    try {
-      localStorage.setItem(key, JSON.stringify(state));
-    } catch(e) {
-      console.error('Error saving state.', e);
-    }
-  }
+    return state;
 };
-
