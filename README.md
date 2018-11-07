@@ -14,12 +14,12 @@ npm i && npm start
 
 * Mimic built-in html elements
   * Attrs/props in, events out
-  * Naming too e.g. todo-list, todo-item, todo-form
+  * Naming also e.g. check-list, check-item
 * Shorthand type no longer supported for declared props e.g. _todos: Array
 * Must call super first in a constructor
 * this._abc is "protected"
 * Make computed props getters or just compute in render()
-* Use <slot> effectively
+* Use &lt;slot&gt; effectively
 * Consider reflect:true to keep attrs updated
 * Use object spread to keep render templates concise
 * Auto update mechanism expects immutable props
