@@ -1,7 +1,7 @@
 {
   "name": "lit-element-todo",
   "version": "1.0.0",
-  "description": "Implements all features of [TodoMVC](http://todomvc.com/) using [@polymer/lit-element](https://www.npmjs.com/package/@polymer/lit-element) (0.6.2).",
+  "description": "LitElement TodoMVC Example",
   "browser": "todo-manager.js",
   "scripts": {
     "start": "polymer serve -o",
