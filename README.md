@@ -1,7 +1,7 @@
 # lit-element-todo
 LitElement TodoMVC Example
 
-Implements all features of [TodoMVC](http://todomvc.com/) using [LitElement](https://www.npmjs.com/package/@polymer/lit-element).
+Demonstrates the complete [TodoMVC](http://todomvc.com/) feature set (minus the styling) using [LitElement](https://www.npmjs.com/package/@polymer/lit-element).
 
 ![Screenshot of unstyled TodoManager component](https://user-images.githubusercontent.com/206228/48041680-44a18400-e14c-11e8-91b8-bd1190addcc0.png)
 
@@ -11,7 +11,7 @@ Implements all features of [TodoMVC](http://todomvc.com/) using [LitElement](htt
 npm i && npm start
 ```
 
-## Learnings
+## Tidbits
 
 * Mimic built-in html elements
   * Attrs/props in, events out
